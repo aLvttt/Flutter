@@ -1,19 +1,35 @@
-import pygame as pg
+import pygame
 import sys
-
+ 
 FPS = 60
-
-pg.init()
-pg.display.set_mode((640, 560), pg.RESIZABLE) 
-clock = pg.time.Clock()
-
-pg.display.update()
-
-while True:
-    clock.tick(FPS)
-
-    for i in pg.event.get():
-        if i.type == pg.QUIT:
+W = 700  # ширина экрана
+H = 300  # высота экрана
+WHITE = (255, 255, 255)
+BLUE = (0, 70, 225)
+ 
+sc = pygame.display.set_mode((W, H))
+clock = pygame.time.Clock()
+pygame.display.set_caption('Flutter')
+ 
+# координаты и радиус круга
+x = W // 2
+y = H // 2
+r = 50
+ 
+while 1:
+    for i in pygame.event.get():
+        if i.type == pygame.QUIT:
             sys.exit()
-
-    pg.display.update()
+ 
+    sc.fill(WHITE)
+    pygame.draw.circle(sc, BLUE, (x, y), r)
+    pygame.display.update()
+ 
+    keys = pygame.key.get_pressed()
+ 
+    if keys[pygame.K_LEFT]:
+        x -= 3
+    elif keys[pygame.K_RIGHT]:
+        x += 3
+ 
+    clock.tick(FPS)
