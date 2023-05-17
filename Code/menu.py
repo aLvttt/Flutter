@@ -1,9 +1,13 @@
 from ursina import *
 import win32api
+import subprocess
 
 app = Ursina(title='Flutter-Menu')
 
 win32api.LoadKeyboardLayout('00000419', 1)
+
+def play_game():
+    subprocess.call(["python", "game.py"])
 
 class MenuMenu(Entity):
    def __init__(self, **kwargs):
@@ -18,12 +22,12 @@ class MenuMenu(Entity):
            menu1.enable()
            menu2.disable()
 
-# вместо print_on_screen можно вписать lambda-функцию для запуска игры
+
        ButtonList(button_dict={
-           "Start": Func(print_on_screen,"You clicked on Start button!", position=(0,.2), origin=(0,0)),
+           "Start": Func((play_game)),
            "Exit": Func(lambda: application.quit())
        },y=0,parent=self.main_menu)
 
 main_menu = MenuMenu()
-window.fullscreen = 1
+window.fullscreen = 0
 app.run()
