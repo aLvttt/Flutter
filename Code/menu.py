@@ -9,6 +9,7 @@ win32api.LoadKeyboardLayout('00000419', 1)
 def play_game():
     subprocess.call(["python", "game.py"])
 
+
 class MenuMenu(Entity):
    def __init__(self, **kwargs):
        super().__init__(parent=camera.ui, ignore_paused=True)
